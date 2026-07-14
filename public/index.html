@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="山海神谕 — 以中国神话人物为镜，解码符号，照见内心。">
+<meta name="theme-color" content="#0a0c11">
+<title>山海神谕 — 解码神话，照见内心</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Alegreya:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="#">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <circle cx="20" cy="20" r="7.5" fill="none" stroke="currentColor" stroke-width="1.4"/>
+      <circle cx="20" cy="20" r="3" fill="currentColor"/>
+      <g stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+        <line x1="20" y1="2.5" x2="20" y2="8.5"/><line x1="20" y1="31.5" x2="20" y2="37.5"/>
+        <line x1="2.5" y1="20" x2="8.5" y2="20"/><line x1="31.5" y1="20" x2="37.5" y2="20"/>
+        <line x1="7.6" y1="7.6" x2="11.9" y2="11.9"/><line x1="28.1" y1="28.1" x2="32.4" y2="32.4"/>
+        <line x1="32.4" y1="7.6" x2="28.1" y2="11.9"/><line x1="11.9" y1="28.1" x2="7.6" y2="32.4"/>
+      </g>
+    </svg>
+    <span class="brand-name">山海神谕</span>
+  </a>
+  <nav class="nav" aria-label="主导航">
+    <a href="#" class="active">仙境</a>
+    <a href="#readingResult">卦辞</a>
+    <a href="#ritual">仪轨</a>
+    <a href="#about">山海</a>
+  </nav>
+</header>
+
+<main class="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <section class="card-column">
+    <div class="card-stage">
+      <div class="card-shadow" id="cardShadow" aria-hidden="true"></div>
+      <div class="card-mover" id="cardMover">
+        <div class="card-tilt" id="cardTilt">
+          <div class="card-obj">
+            <img src="assets/cards/nuwa.webp" alt="女娲 — 补天造人。中国神话神谕卡。">
+          </div>
+          <div class="card-back" aria-hidden="true">
+            <img src="assets/cards/cardBack.webp" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <blockquote class="card-quote" id="cardQuote">
+      <span class="qmark">「</span>
+      <em>残缺之处，正是新生开始的缝隙。</em>
+      <span class="qmark">」</span>
+    </blockquote>
+    <div class="quote-ornament" aria-hidden="true">
+      <span class="orn-line"></span>
+      <svg viewBox="0 0 16 16"><path d="M8 1 L9.8 6.2 L15 8 L9.8 9.8 L8 15 L6.2 9.8 L1 8 L6.2 6.2 Z" fill="currentColor"/></svg>
+      <span class="orn-line"></span>
+    </div>
+  </section>
+
+  <section class="content-column">
+    <p class="eyebrow">一张山海图谱 · 映照内心疆域 <span class="eyebrow-orn" aria-hidden="true">✦—</span></p>
+    <h1>解码神话符号。<br>照见本来面目。</h1>
+    <div class="sun-divider" aria-hidden="true">
+      <svg viewBox="0 0 28 28">
+        <circle cx="14" cy="14" r="4.6" fill="none" stroke="currentColor" stroke-width="1.2"/>
+        <g stroke="currentColor" stroke-width="1.1" stroke-linecap="round">
+          <line x1="14" y1="3" x2="14" y2="6.6"/><line x1="14" y1="21.4" x2="14" y2="25"/>
+          <line x1="3" y1="14" x2="6.6" y2="14"/><line x1="21.4" y1="14" x2="25" y2="14"/>
+          <line x1="6.2" y1="6.2" x2="8.8" y2="8.8"/><line x1="19.2" y1="19.2" x2="21.8" y2="21.8"/>
+          <line x1="21.8" y1="6.2" x2="19.2" y2="8.8"/><line x1="8.8" y1="19.2" x2="6.2" y2="21.8"/>
+        </g>
+      </svg>
+    </div>
+    <p class="lede">每一位神祇都是一面镜。每一则传说，都是一句密语。以中国神话为舟，渡向更澄明的自己。</p>
+
+    <hr class="rule">
+
+    <div class="privacy-note">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10.5" width="14" height="9.5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 10.5V8a4 4 0 0 1 8 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      <p><strong>私密 · 切身 · 深邃。</strong><br>无需登录，卦象只留在你与此刻之间。</p>
+    </div>
+
+    <div class="reading-panel" id="ritual">
+      <p class="panel-label"><span class="lbl-orn" aria-hidden="true">—✦</span> 启卦</p>
+
+      <a class="action action-primary" href="#" data-action="draw">
+        <span class="action-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.3"/>
+            <g stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+              <line x1="12" y1="2.6" x2="12" y2="5.6"/><line x1="12" y1="18.4" x2="12" y2="21.4"/>
+              <line x1="2.6" y1="12" x2="5.6" y2="12"/><line x1="18.4" y1="12" x2="21.4" y2="12"/>
+              <line x1="5.3" y1="5.3" x2="7.4" y2="7.4"/><line x1="16.6" y1="16.6" x2="18.7" y2="18.7"/>
+              <line x1="18.7" y1="5.3" x2="16.6" y2="7.4"/><line x1="7.4" y1="16.6" x2="5.3" y2="18.7"/>
+            </g>
+          </svg>
+        </span>
+        <span class="action-text">
+          <span class="action-title">抽取神谕</span>
+          <span class="action-sub">请一位神话人物为今日示现</span>
+        </span>
+        <svg class="action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <a class="action action-secondary" href="#" data-action="mood">
+        <span class="action-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M15.2 3.2a9.2 9.2 0 1 0 5.6 12.4A7.4 7.4 0 0 1 15.2 3.2Z" fill="currentColor"/></svg>
+        </span>
+        <span class="action-text">
+          <span class="action-title">依心境问卦</span>
+          <span class="action-sub">依当下情绪，求相应指引</span>
+        </span>
+        <svg class="action-arrow" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <p class="panel-label intention-label"><span class="lbl-orn" aria-hidden="true">—✦</span> 立意</p>
+
+      <div class="intentions">
+        <a class="chip" href="#" data-intention="clarity">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 L9.6 6.4 L14.5 8 L9.6 9.6 L8 14.5 L6.4 9.6 L1.5 8 L6.4 6.4 Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          明心
+        </a>
+        <a class="chip" href="#" data-intention="healing">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.8C8 1.8 3.4 7 3.4 10a4.6 4.6 0 0 0 9.2 0C12.6 7 8 1.8 8 1.8Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/></svg>
+          疗愈
+        </a>
+        <a class="chip" href="#" data-intention="direction">
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <circle cx="8" cy="8" r="2.6" fill="none" stroke="currentColor" stroke-width="1"/>
+            <g stroke="currentColor" stroke-width="1" stroke-linecap="round">
+              <line x1="8" y1="1.2" x2="8" y2="3.4"/><line x1="8" y1="12.6" x2="8" y2="14.8"/>
+              <line x1="1.2" y1="8" x2="3.4" y2="8"/><line x1="12.6" y1="8" x2="14.8" y2="8"/>
+            </g>
+          </svg>
+          指引
+        </a>
+        <a class="chip chip-love" href="#" data-intention="love">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 13.6C4.6 11.2 1.8 8.9 1.8 6.1a3.3 3.3 0 0 1 6.2-1.6A3.3 3.3 0 0 1 14.2 6.1c0 2.8-2.8 5.1-6.2 7.5Z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></svg>
+          情缘
+        </a>
+      </div>
+
+      <div class="panel-foot">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.4" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M12 6.5v11M6.5 12h11" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+        <p><strong>仪轨小诀：</strong>静心一息。立意。信你所见。</p>
+        <a class="learn-more" href="#about">知更多
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13.5 6.5 19 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="date-row">
+      <div class="moon-chip" id="moonChip">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.2 3.2a9.2 9.2 0 1 0 5.6 12.4A7.4 7.4 0 0 1 15.2 3.2Z" fill="currentColor"/></svg>
+        <span class="moon-date">—</span>
+        <span class="moon-name">—</span>
+        <span class="moon-days">—</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- 卦辞放在 hero 外，避免显隐改变 hero 高度导致背景 cover 重算抖动 -->
+<aside class="reading-result" id="readingResult" hidden></aside>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <p class="eyebrow">山海 · 渊源</p>
+    <h2>神话不是遥远的传说，<br>而是心象的图谱。</h2>
+    <p>女娲补天、盘古开天、嫦娥奔月、大圣齐天……这些故事流传千年，因为它们说出了人人心中曾有、将有的境遇。山海神谕以十七位神话人物为牌，供你在静默中抽得一面镜。</p>
+    <p class="about-note">本站纯前端运行，可部署于 Cloudflare。无追踪、无账号、无服务器存储。供省思，非占断。</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <span>山海神谕 · Mythos Oracle</span>
+  <span class="footer-orn">✦</span>
+  <span>供省思，非占断</span>
+</footer>
+
+<div class="modal" id="moodModal" hidden>
+  <div class="modal-backdrop"></div>
+  <div class="modal-panel" role="dialog" aria-labelledby="moodTitle" aria-modal="true">
+    <button type="button" class="modal-close" aria-label="关闭">×</button>
+    <p class="panel-label" id="moodTitle"><span class="lbl-orn">—✦</span> 此刻心境</p>
+    <p class="modal-lede">择一贴近你的感受，神谕将应势而来。</p>
+    <div class="mood-grid" id="moodGrid"></div>
+  </div>
+</div>
+
+<script src="js/deck.js"></script>
+<script src="js/card.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shanhai-oracle",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "shanhai-oracle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "山海神谕 — 中国神话人物版神谕抽牌，可部署至 Cloudflare",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev --local"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.3",
+    "wrangler": "^4.97.0"
+  }
+}
