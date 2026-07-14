@@ -2,25 +2,6 @@
 
 中国神话人物版神谕抽牌站。灵感来自 [Tarot Sanctuary](https://html.non.io/tarot) 的交互与氛围，重新演绎为山海经 / 中国神话语境。
 
-| | 推荐 |
-|---|---|
-| **仓库名** | `shanhai-oracle` |
-| **线上域名** | `https://shanhai.aipuls.de` |
-| **Worker 名** | `shanhai-oracle`（与 `wrangler.jsonc` 一致） |
-
-### 命名备选
-
-| 类型 | 名称 | 说明 |
-|------|------|------|
-| 仓库 | `shanhai-oracle` | **推荐** · 英文清晰、好搜、与 npm/wrangler 一致 |
-| 仓库 | `shanhai-shenyu` | 音译「山海神谕」，中文味更重 |
-| 仓库 | `mythos-oracle` | 更国际化，弱化「山海」字面 |
-| 子域名 | `shanhai.aipuls.de` | **推荐** · 短、好记、和产品名一致 |
-| 子域名 | `shenyu.aipuls.de` | 「神谕」拼音，更短 |
-| 子域名 | `oracle.aipuls.de` | 通用，若以后有多款神谕可作总入口 |
-
----
-
 ## 功能
 
 - **抽取神谕**：17 位神话人物（女娲、孙悟空、嫦娥、观音、哪吒、盘古、白素贞、后羿、龙王、伏羲、西王母、钟馗、精卫、夸父、刑天、雷公、门神）
@@ -66,12 +47,11 @@ npx wrangler login
 npm run deploy
 ```
 
-### 绑定自定义域名 `shanhai.aipuls.de`
+### 绑定自定义域名
 
-1. Cloudflare Dashboard → 对应账号已托管 `aipuls.de`
-2. Workers & Pages → `shanhai-oracle` → Settings → Domains & Routes
-3. 添加 Custom Domain：`shanhai.aipuls.de`  
-   （同账号下 DNS 会自动加 CNAME；若域名在别处，把 CNAME 指到 Workers 提示的目标）
+1. Cloudflare Dashboard → Workers & Pages → 本项目 → Settings → Domains & Routes
+2. 添加 Custom Domain，填入你的域名  
+   （域名在同一 Cloudflare 账号下时 DNS 会自动配置；否则按提示添加 CNAME）
 
 或使用 Pages 方式：
 
