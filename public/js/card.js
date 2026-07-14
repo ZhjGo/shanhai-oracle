@@ -761,10 +761,10 @@
     gl.uniform3f(U.uAmbientColor, 0.82, 0.83, 0.88);
     gl.uniform1f(U.uAmbientAmt, 0.56);
     gl.uniform1f(U.uDiffuseAmt, 0.62);
-    gl.uniform1f(U.uSpecStr, 0.34);
-    gl.uniform1f(U.uNormalStr, 1.35);
-    gl.uniform1f(U.uLightZ, 0.5);
-    gl.uniform1f(U.uParallax, reduceMotion ? 0.0 : 0.0034);
+    gl.uniform1f(U.uSpecStr, 0.36);
+    gl.uniform1f(U.uNormalStr, 1.25);
+    gl.uniform1f(U.uLightZ, 0.48);
+    gl.uniform1f(U.uParallax, reduceMotion ? 0.0 : 0.0032);
     gl.uniform1f(U.uMotion, reduceMotion ? 0.0 : 1.0);
     gl.uniform1f(U.uHasMouse, 0.0);
     gl.uniform2f(U.uMouse, 0.44, 0.66);
