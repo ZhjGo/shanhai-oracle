@@ -79,18 +79,32 @@
   let curRY = 0;
   let pointerActive = false;
 
-  window.addEventListener('mousemove', (e) => {
+  function updateTiltFromPoint(clientX, clientY) {
     const r = obj.getBoundingClientRect();
     if (r.width < 1) return;
     const cx = r.left + r.width / 2;
     const cy = r.top + r.height / 2;
     // Normalized offset, softened past the card so far corners don't slam
     // the tilt to its extreme.
-    const nx = Math.max(-1, Math.min(1, (e.clientX - cx) / (window.innerWidth * 0.5)));
-    const ny = Math.max(-1, Math.min(1, (e.clientY - cy) / (window.innerHeight * 0.5)));
+    const nx = Math.max(-1, Math.min(1, (clientX - cx) / (window.innerWidth * 0.5)));
+    const ny = Math.max(-1, Math.min(1, (clientY - cy) / (window.innerHeight * 0.5)));
     targetRY = nx * MAX_TILT;   // face turns toward pointer horizontally
     targetRX = -ny * MAX_TILT;  // and vertically
     pointerActive = true;
+  }
+
+  window.addEventListener('mousemove', (e) => {
+    updateTiltFromPoint(e.clientX, e.clientY);
+  }, { passive: true });
+
+  // 移动端：手指在牌面上滑动时同样驱动倾斜（不阻止页面滚动——只在牌上跟）
+  stage.addEventListener('touchstart', (e) => {
+    if (!e.touches[0]) return;
+    updateTiltFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+  }, { passive: true });
+  stage.addEventListener('touchmove', (e) => {
+    if (!e.touches[0]) return;
+    updateTiltFromPoint(e.touches[0].clientX, e.touches[0].clientY);
   }, { passive: true });
 
   /* Draw-choreography state, all applied inside the one rAF writer:
@@ -469,18 +483,17 @@
 
     // After a redraw that scrolled up, gently reveal the reading in place;
     // on first draw (mobile) ease the panel into view without fighting the card.
-    if (opts && opts.followScroll) {
-      // Card has just settled in view — only a tiny nudge if the reading
-      // panel is completely below the fold (don't pull the card off-screen).
+    // 移动端：抽卡后把卦辞滚进可视区（避开 sticky 顶栏）
+    const isNarrow = window.innerWidth < 1120;
+    if (opts && opts.followScroll && !isNarrow) {
+      // 桌面再抽：牌已在上方，仅当卦辞完全在折线以下时轻推一点
       setTimeout(() => {
         const rr = readingEl.getBoundingClientRect();
         const stageR = stage.getBoundingClientRect();
-        // Prefer keeping the card visible; if reading is off-screen bottom,
-        // ease just enough to peek it without hiding the card.
         if (rr.top > window.innerHeight - 48 && stageR.bottom > 120) {
           const overflow = rr.top - window.innerHeight * 0.72;
           const start = window.scrollY;
-          const maxDown = Math.max(0, stageR.top - 72); // never scroll card above this
+          const maxDown = Math.max(0, stageR.top - 72);
           const target = Math.min(start + overflow, start + maxDown);
           if (target > start + 8) {
             tween(640, (p) => {
@@ -489,10 +502,19 @@
           }
         }
       }, 200);
-    } else if (window.innerWidth < 1120) {
+    } else if (isNarrow) {
       setTimeout(() => {
-        readingEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }, 80);
+        const header = document.querySelector('.site-header');
+        const headerH = header ? header.getBoundingClientRect().height : 0;
+        const top = readingEl.getBoundingClientRect().top + window.scrollY;
+        const target = Math.max(0, top - headerH - 12);
+        const start = window.scrollY;
+        if (Math.abs(target - start) > 12) {
+          tween(560, (p) => {
+            scrollToY(start + (target - start) * easeOut3(p));
+          });
+        }
+      }, 100);
     }
   }
 
@@ -916,6 +938,16 @@
     window.addEventListener('mousemove', (e) => {
       layers.forEach((L) => L.pointer(e));
     }, { passive: true });
+
+    // 触摸驱动 WebGL 烛光（与桌面鼠标一致）
+    const onTouchLight = (e) => {
+      const t = e.touches[0];
+      if (!t) return;
+      const fake = { clientX: t.clientX, clientY: t.clientY };
+      layers.forEach((L) => L.pointer(fake));
+    };
+    stage.addEventListener('touchstart', onTouchLight, { passive: true });
+    stage.addEventListener('touchmove', onTouchLight, { passive: true });
   }
   window.addEventListener('resize', () => {
     layers.forEach((L) => L.onResize());

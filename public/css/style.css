@@ -625,34 +625,6 @@ h1 {
   white-space: nowrap;
 }
 
-/* ------------------------------------------------------------ responsive */
-
-@media (max-width: 1120px) {
-  .hero { grid-template-columns: 1fr; padding: 48px 32px; }
-  .card-column { order: 2; margin-top: 48px; }
-  .content-column { order: 1; max-width: 640px; margin-inline: auto; }
-  .nav { display: none; }
-  .reading-result {
-    grid-template-columns: 1fr;
-    padding: 8px 32px 24px;
-  }
-  .reading-result::before { display: none; }
-  .reading-result > .reading-inner {
-    grid-column: 1;
-    max-width: 640px;
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 620px) {
-  .site-header { padding: 14px 20px; gap: 16px; }
-  .hero { padding: 36px 18px 56px; }
-  .card-stage { width: min(86vw, 420px); }
-  .date-row { justify-content: center; }
-  .moon-chip { justify-content: center; }
-  .reading-result { padding: 4px 18px 20px; }
-}
-
 /* -------------------------------------------------------- reading result
    与 hero 同栏网格：落在右侧内容列，不居中；在 hero 外不撑高背景 */
 
@@ -982,6 +954,560 @@ body.modal-open { overflow: hidden; }
   background: rgba(198, 154, 88, 0.08);
 }
 .mood-emoji { font-size: 16px; line-height: 1; }
+
+/* ------------------------------------------------------------ responsive */
+
+/* 平板：单栏，文案在上、牌在下 */
+@media (max-width: 1120px) {
+  .site-header {
+    padding: 16px 28px;
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+    gap: 24px;
+  }
+
+  .nav {
+    gap: 22px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: min(52vw, 360px);
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav a {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    white-space: nowrap;
+    flex: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 40px 28px 56px;
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+    min-height: auto;
+    gap: 28px;
+  }
+
+  /* 移动端：先见牌，再操作（沉浸感更好） */
+  .card-column {
+    order: 1;
+    margin-top: 0;
+    padding-top: 4px;
+  }
+  .content-column {
+    order: 2;
+    max-width: 640px;
+    margin-inline: auto;
+    width: 100%;
+    padding-top: 8px;
+  }
+
+  .card-stage { width: min(72vw, 380px); }
+  .card-quote {
+    font-size: clamp(17px, 4.2vw, 22px);
+    max-width: 28em;
+    padding-inline: 8px;
+  }
+
+  h1 {
+    font-size: clamp(32px, 7vw, 48px);
+    letter-spacing: 0.03em;
+  }
+  .eyebrow { letter-spacing: 0.16em; font-size: 12px; }
+  .lede { font-size: 16px; max-width: none; }
+
+  .reading-result {
+    grid-template-columns: 1fr;
+    padding: 8px 28px 28px;
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+    gap: 0;
+  }
+  .reading-result::before { display: none; }
+  .reading-result > .reading-inner {
+    grid-column: 1;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .about {
+    padding: 56px 28px 40px;
+    padding-left: max(28px, env(safe-area-inset-left));
+    padding-right: max(28px, env(safe-area-inset-right));
+  }
+}
+
+/* 手机 */
+@media (max-width: 620px) {
+  /* iOS 上 fixed 背景常卡顿，改成滚动跟随 */
+  body {
+    background-attachment: scroll;
+  }
+
+  html {
+    /* 小屏不必强留滚动条槽 */
+    scrollbar-gutter: auto;
+  }
+
+  .site-header {
+    padding: 12px 16px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    gap: 12px;
+    /* 顶栏可粘住，方便回顶操作 */
+    position: sticky;
+    top: 0;
+  }
+
+  .brand { gap: 10px; min-width: 0; }
+  .brand-mark { width: 26px; height: 26px; flex: none; }
+  .brand-name {
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* 手机：顶栏只留品牌，导航收到内容区底部的锚点即可 */
+  .nav { display: none; }
+
+  .hero {
+    padding: 20px 16px 40px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(40px, env(safe-area-inset-bottom));
+    gap: 20px;
+  }
+
+  .card-stage {
+    width: min(78vw, 320px);
+  }
+
+  .card-quote {
+    margin-top: 22px;
+    font-size: 16px;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+  }
+
+  .quote-ornament { margin-top: 14px; }
+
+  .content-column { padding-top: 4px; }
+
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    line-height: 1.5;
+  }
+
+  h1 {
+    margin-top: 14px;
+    font-size: clamp(28px, 8.2vw, 36px);
+    line-height: 1.22;
+    letter-spacing: 0.02em;
+  }
+
+  .sun-divider { margin-top: 16px; }
+
+  .lede {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .rule { margin-top: 20px; }
+
+  .privacy-note {
+    margin-top: 16px;
+    gap: 10px;
+  }
+  .privacy-note p { font-size: 14px; line-height: 1.55; }
+
+  .reading-panel {
+    margin-top: 20px;
+    border-radius: 14px;
+    padding: 18px 14px 0;
+  }
+
+  .panel-label {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+
+  .action {
+    gap: 12px;
+    padding: 14px 12px;
+    margin-top: 12px;
+    /* 保证可点区域够大 */
+    min-height: 64px;
+  }
+
+  .action-icon {
+    width: 36px;
+    height: 36px;
+  }
+  .action-icon svg { width: 18px; height: 18px; }
+
+  .action-title {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+  .action-sub {
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+
+  /* 小屏可隐藏箭头，给文字腾空间 */
+  .action-arrow { width: 16px; height: 16px; opacity: 0.75; }
+
+  .intention-label { margin-top: 20px; }
+
+  .intentions {
+    gap: 8px;
+    margin-top: 12px;
+    /* 两列均匀排布 */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .chip {
+    justify-content: center;
+    padding: 12px 10px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    min-height: 44px;
+  }
+
+  .panel-foot {
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+    padding: 14px 0 16px;
+    align-items: flex-start;
+  }
+
+  .panel-foot p {
+    font-size: 13px;
+    line-height: 1.5;
+    flex: 1 1 160px;
+  }
+
+  .learn-more {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-end;
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    min-height: 40px;
+  }
+
+  .date-row {
+    justify-content: stretch;
+    margin-top: 18px;
+  }
+
+  .moon-chip {
+    width: 100%;
+    justify-content: center;
+    gap: 8px 10px;
+    padding: 12px 12px;
+    font-size: 12.5px;
+    border-radius: 12px;
+  }
+
+  .moon-date,
+  .moon-name,
+  .moon-days {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .moon-name,
+  .moon-days {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  /* 月相三行信息：日期 / 月相 / 距朔 */
+  .moon-date { width: 100%; order: 1; }
+  .moon-chip svg { order: 0; }
+  .moon-name {
+    order: 2;
+    width: 100%;
+    padding-top: 2px;
+    border-top: 1px solid rgba(232, 222, 202, 0.1);
+  }
+  .moon-days {
+    order: 3;
+    width: 100%;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+  }
+
+  .reading-result {
+    padding: 4px 16px 24px;
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+    padding-bottom: max(24px, env(safe-area-inset-bottom));
+  }
+
+  .reading-inner {
+    padding: 22px 16px 18px;
+    border-radius: 14px;
+  }
+
+  .reading-close {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    /* 扩大可点区域 */
+  }
+
+  .reading-kicker {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    padding-right: 36px;
+  }
+
+  .reading-name {
+    font-size: 26px;
+    letter-spacing: 0.12em;
+    gap: 8px;
+  }
+
+  .reading-title {
+    font-size: 13px;
+    letter-spacing: 0.14em;
+  }
+
+  .reading-quote {
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    line-height: 1.55;
+  }
+
+  .reading-body {
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  .tag {
+    font-size: 11px;
+    padding: 6px 12px;
+    letter-spacing: 0.1em;
+  }
+
+  .btn-redraw {
+    width: 100%;
+    justify-content: center;
+    min-height: 48px;
+    margin-top: 18px;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+  }
+
+  .about {
+    padding: 48px 18px 32px;
+    padding-left: max(18px, env(safe-area-inset-left));
+    padding-right: max(18px, env(safe-area-inset-right));
+  }
+
+  .about h2 {
+    font-size: clamp(22px, 6.5vw, 28px);
+    letter-spacing: 0.04em;
+  }
+
+  .about p {
+    font-size: 14.5px;
+    line-height: 1.8;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px 16px max(28px, env(safe-area-inset-bottom));
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+
+  /* 心境弹层：接近全屏、好滚动 */
+  .modal {
+    padding: 12px;
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    align-items: end;
+  }
+
+  .modal-panel {
+    width: 100%;
+    max-height: min(88vh, 720px);
+    border-radius: 18px 18px 14px 14px;
+    padding: 22px 16px 18px;
+  }
+
+  .mood-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .mood-chip {
+    padding: 12px 10px;
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+    min-height: 48px;
+  }
+
+  .modal-lede {
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+
+  .modal-close {
+    width: 40px;
+    height: 40px;
+    top: 8px;
+    right: 8px;
+  }
+}
+
+/* 超窄屏（SE / 小折叠） */
+@media (max-width: 380px) {
+  .card-stage { width: min(84vw, 280px); }
+  h1 { font-size: 26px; }
+  .action-sub { display: none; } /* 只留主标题，避免挤成一团 */
+  .action { min-height: 56px; }
+  .intentions { gap: 6px; }
+  .chip { padding: 10px 6px; font-size: 12px; }
+}
+
+/* 横屏手机：牌略缩小，避免占满竖向空间 */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+  .hero { padding-top: 16px; padding-bottom: 24px; }
+  .card-stage { width: min(36vh, 220px); }
+  .card-quote { display: none; }
+  .quote-ornament { display: none; }
+  .site-header { position: relative; }
+}
+
+
+/* —— 卦辞面板移动端（放在基础样式之后，确保覆盖桌面双栏） —— */
+@media (max-width: 1120px) {
+  .reading-result {
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+    padding: 12px 28px 32px !important;
+    padding-left: max(28px, env(safe-area-inset-left)) !important;
+    padding-right: max(28px, env(safe-area-inset-right)) !important;
+  }
+  .reading-result::before {
+    display: none !important;
+    content: none !important;
+  }
+  .reading-result > .reading-inner {
+    grid-column: 1 / -1 !important;
+    max-width: 640px !important;
+    width: 100% !important;
+    margin-inline: auto;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 620px) {
+  .reading-result {
+    padding: 8px 16px max(28px, env(safe-area-inset-bottom)) !important;
+    padding-left: max(16px, env(safe-area-inset-left)) !important;
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(198, 154, 88, 0.05), transparent 55%),
+      linear-gradient(180deg, rgba(10, 12, 17, 0.15) 0%, rgba(10, 12, 17, 0.5) 100%) !important;
+  }
+
+  .reading-result > .reading-inner {
+    max-width: none !important;
+  }
+
+  .reading-inner {
+    padding: 20px 16px 18px !important;
+    border-radius: 14px !important;
+  }
+
+  .reading-close {
+    top: 8px !important;
+    right: 8px !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 24px !important;
+  }
+
+  .reading-kicker {
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    padding-right: 40px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .reading-name {
+    font-size: 24px !important;
+    letter-spacing: 0.1em !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
+    line-height: 1.25 !important;
+  }
+
+  .reading-title {
+    font-size: 13px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  .reading-quote {
+    margin-top: 14px !important;
+    font-size: 16px !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.55 !important;
+  }
+
+  .reading-body {
+    margin-top: 12px !important;
+    font-size: 14px !important;
+    line-height: 1.8 !important;
+  }
+
+  .reading-tags {
+    margin-top: 14px !important;
+    gap: 6px !important;
+  }
+
+  .tag {
+    font-size: 11px !important;
+    padding: 6px 11px !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .btn-redraw {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+    margin-top: 16px !important;
+    font-size: 13px !important;
+    letter-spacing: 0.12em !important;
+    padding: 12px 16px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .reading-name { font-size: 22px !important; }
+  .reading-quote { font-size: 15px !important; }
+  .reading-inner { padding: 18px 14px 16px !important; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .card-tilt,
