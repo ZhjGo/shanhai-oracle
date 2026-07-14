@@ -481,12 +481,11 @@
       });
     });
 
-    // After a redraw that scrolled up, gently reveal the reading in place;
-    // on first draw (mobile) ease the panel into view without fighting the card.
-    // 移动端：抽卡后把卦辞滚进可视区（避开 sticky 顶栏）
-    const isNarrow = window.innerWidth < 1120;
-    if (opts && opts.followScroll && !isNarrow) {
-      // 桌面再抽：牌已在上方，仅当卦辞完全在折线以下时轻推一点
+    // 不自动滚到「今日神谕」：
+    // - 抽取神谕：留在当前视口看牌面，用户自己下滑看卦辞
+    // - 再抽一卦：followScroll 已随牌上滑，若再滚到卦辞会「先上后下」打架
+    // 桌面再抽时若卦辞完全在折线以下，最多轻推一截（仍优先保住牌面）
+    if (opts && opts.followScroll && window.innerWidth >= 1120) {
       setTimeout(() => {
         const rr = readingEl.getBoundingClientRect();
         const stageR = stage.getBoundingClientRect();
@@ -502,19 +501,6 @@
           }
         }
       }, 200);
-    } else if (isNarrow) {
-      setTimeout(() => {
-        const header = document.querySelector('.site-header');
-        const headerH = header ? header.getBoundingClientRect().height : 0;
-        const top = readingEl.getBoundingClientRect().top + window.scrollY;
-        const target = Math.max(0, top - headerH - 12);
-        const start = window.scrollY;
-        if (Math.abs(target - start) > 12) {
-          tween(560, (p) => {
-            scrollToY(start + (target - start) * easeOut3(p));
-          });
-        }
-      }, 100);
     }
   }
 
